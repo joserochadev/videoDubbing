@@ -24,7 +24,7 @@ This application provides a service that automatically dubs videos in different 
 ## Requisitos Funcionais (RFs)
 
 - [] deve ser possivel fazer upload de videos
-- [] deve ser possivel extrair o audio do video
+- [x] deve ser possivel extrair o audio do video
 - [] deve ser possivel transcrever o audio do video
 - [] deve ser possivel traduzir a transcrição do video para o idioma desejado
 - [] deve ser possivel gerar um novo audio com a trascrição traduzida
