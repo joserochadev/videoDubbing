@@ -1,4 +1,4 @@
-import { exec, spawn } from 'node:child_process'
+import { ITranscriptModule } from '@/modules/ITranscriptModule'
 
 interface IGenerateAudioTranscriptUseCaseRequest {
 	audioPath: string
@@ -6,33 +6,26 @@ interface IGenerateAudioTranscriptUseCaseRequest {
 	whisperModel?: 'tiny' | 'base' | 'small' | 'medium' | 'large'
 }
 
+interface IGenerateAudioTranscriptUseCaseResponse {
+	transcription: string
+}
+
 export class GenerateAudioTranscriptUseCase {
+	constructor(private transcriptModule: ITranscriptModule) {}
+
 	async execute({
 		audioPath,
-		// audioLanguage,
 		whisperModel = 'tiny',
-	}: IGenerateAudioTranscriptUseCaseRequest) {
-		const audioData = JSON.stringify({
+	}: IGenerateAudioTranscriptUseCaseRequest): Promise<IGenerateAudioTranscriptUseCaseResponse> {
+		const transcription = await this.transcriptModule.transcript({
 			audioPath,
 			whisperModel,
 		})
 
-		const transcriptProcess = spawn('python3', [
-			'-u',
-			'src/whisper/generate_transcript.py',
-			audioData,
-		])
+		if (transcription === '') {
+			throw new Error('Unable to generate transcript.')
+		}
 
-		transcriptProcess.stdout.on('data', (data) => {
-			console.log(`${data}`)
-		})
-
-		transcriptProcess.stderr.on('data', (data) => {
-			console.error(`Erro: ${data}`)
-		})
-
-		transcriptProcess.on('close', (code) => {
-			console.log(`Processo finalizado com código ${code}`)
-		})
+		return { transcription }
 	}
 }
