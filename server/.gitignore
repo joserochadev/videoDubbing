@@ -3,3 +3,5 @@ node_modules
 test.ts
 
 output/audio/*
+
+src/whisper/test.py

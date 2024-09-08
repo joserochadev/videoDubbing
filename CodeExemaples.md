@@ -9,7 +9,7 @@ import whisper
 model = whisper.load_model("base")  # Escolha o tamanho do modelo (tiny, base, small, medium, large)
 
 # Transcrever o arquivo de áudio e obter os timestamps
-result = model.transcribe("seu_audio.wav", verbose=True)
+result = model.transcribe("../../output/audio/audio.mp3", verbose=True)
 
 # Salvar o resultado como legendas SRT
 with open("transcricao.srt", "w") as srt_file:
