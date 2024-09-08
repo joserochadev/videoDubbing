@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Upload de Arquivos</title>
+		<link rel="stylesheet" href="./src/styles/global.css" />
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"
+			integrity="sha512-11t8Q+vY9JlCrr+PveZKTYJq8n7O09Y5X/pk/aMd3vJugSvu4xOunGEUzaADqL3I8cZKE/pBwwCfXzDkRJh2sQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+	</head>
+	<body>
+		<div class="upload-container">
+			<h1>Upload de Arquivos</h1>
+			<input type="file" id="fileInput" multiple />
+			<button class="submit-btn" onclick="handleSubmit()">Enviar</button>
+			<button class="reset-btn" onclick="handleReset()">Resetar</button>
+			<div class="output">
+				<span id="totalSize"
+					>Pending bytes to upload: <strong>0 bytes</strong></span
+				>
+				<span id="uploadStatus">Status: Aguardando...</span>
+			</div>
+		</div>
+
+		<!-- <script src="/socket.io/socket.io.js"></script> -->
+		<script src="./src/js/main.ts" type="module"></script>
+	</body>
+</html>
